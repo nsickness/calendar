@@ -1,0 +1,67 @@
+{
+  "name": "calendar",
+  "version": "0.0.1",
+  "description": "Calendar web app",
+  "author": "Nikita",
+  "private": false,
+  "dependencies": {
+    "jquery": "latest",
+    "materialize-css": "^0.98.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-inline-environment-variables": "latest",
+    "babel-plugin-transform-remove-console": "latest",
+    "babel-plugin-transform-remove-debugger": "latest",
+    "babel-polyfill": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "babelify": "latest",
+    "browser-sync": "latest",
+    "browserify": "latest",
+    "del": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-bump": "latest",
+    "gulp-combine-mq": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-cssmin": "latest",
+    "gulp-if": "latest",
+    "gulp-ignore": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-streamify": "latest",
+    "gulp-svgmin": "latest",
+    "gulp-uglify": "latest",
+    "gulp-util": "latest",
+    "run-sequence": "latest",
+    "streamify": "latest",
+    "vinyl-buffer": "latest",
+    "vinyl-source-stream": "latest",
+    "watchify": "latest"
+  },
+  "engines": {
+    "node": ">=7.4.0",
+    "npm": ">=4.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsickness/calendar.git"
+  },
+  "main": "public/main.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "calendar app",
+    "web app",
+    "react",
+    "redux"
+  ],
+  "license": "ISC"
+}

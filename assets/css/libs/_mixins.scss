@@ -1,0 +1,15 @@
+@mixin ultra_thin() {
+  font-weight: 100;
+}
+
+@mixin thin() {
+  font-weight: 300;
+}
+
+@mixin regular() {
+  font-weight: 500;
+}
+
+@mixin bold() {
+  font-weight: 700;
+}
