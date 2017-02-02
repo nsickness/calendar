@@ -1,3 +1,52 @@
 @import "../../node_modules/materialize-css/dist/css/materialize";
-@import "libs/variables";
+@import "components/header";
+
+#root{
+  display: flex;
+  flex-direction: column;
+  height:100vh;
+}
+#main-view{
+  position: relative;
+  flex: 8;
+  overflow: scroll;
+  .days{
+    flex-wrap: wrap;
+  }
+  .day{
+    height:16.66%;
+    padding:10px;
+    align-items: flex-start;
+    border: 1px solid #80deea;
+    border-top: 0;
+    border-left: 0;
+  }
+
+}
+.days{
+  display: flex;
+  flex:auto;
+  flex-direction: row;
+  align-content: center;
+  align-items: stretch;
+  text-align: right;
+  text-transform: capitalize;
+  .day{
+    align-items: center;
+    display: flex;
+    align-content: flex-start;
+    flex: 0 0 14.28%;
+    padding: 0;
+    .inner{
+      flex: 0 0 100%;
+    }
+    &.current{
+      background: #bbdefb;
+      &.today{
+        background: #7986cb;
+      }
+    }
+
+  }
+}
 
