@@ -5,32 +5,64 @@
 'use strict';
 
 import {createStore} from 'redux'
-import getDaysInMonth from './../utils/getDaysInMonth'
-import  mapDaysInMonth from './../utils/mapDaysInMonth'
 
-function visibleDates() {
-    let date = new Date(2017, 1);
-    let currentMonth = date.getMonth();
-    let currentYear = date.getFullYear();
+const initialDate =  new Date();
 
-    let prevDate = new Date(currentYear, currentMonth === 0 ? 11 : currentMonth - 1);
-    let nextDate = new Date(currentYear, currentMonth === 11 ? 0 : currentMonth + 1);
-
-    return {
-        currentMonth: getDaysInMonth(date.getMonth(), date.getFullYear()),
-        prevMonth: getDaysInMonth(prevDate.getMonth(), prevDate.getFullYear()),
-        nextMonth: getDaysInMonth(nextDate.getMonth(), nextDate.getFullYear())
-    }
-}
-
+const months = ['January', 
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+];
 
 const initialState = {
-    today: new Date(),
-    calendarDates: visibleDates()
-}
+    today: initialDate,
+    focusedDate: initialDate,
+    focusedMonth: months[initialDate.getMonth()]
+};
 
 function dates(state = initialState, action){
     switch(action.type){
+        case 'GENERATE_DATES':
+            return Object.assign({}, state, {
+                calendarDates: visibleDates(action.date)
+            });
+        case 'DECREMENT_MONTH':
+
+            return (()=>{
+                let currentMonth = state.focusedDate.getMonth();
+                let currentYear = state.focusedDate.getFullYear();
+                let newMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+                let newYear = newMonth === 11 ? currentYear - 1 : currentYear;
+                let newDate = new Date(newYear, newMonth);
+
+                return Object.assign({}, state, {
+                    focusedDate: newDate,
+                    focusedMonth: months[newDate.getMonth()]
+                });
+            })();
+
+        case 'INCREMENT_MONTH':
+            return (()=>{
+                let currentMonth = state.focusedDate.getMonth();
+                let currentYear = state.focusedDate.getFullYear();
+                let newMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+                let newYear = newMonth === 0 ? currentYear + 1 : currentYear;
+                let newDate = new Date(newYear, newMonth);
+
+                return Object.assign({}, state, {
+                    focusedDate: newDate,
+                    focusedMonth: months[newDate.getMonth()]
+                });
+            })();
+
         default:
             return state
     }

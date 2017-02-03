@@ -6,36 +6,26 @@
 
 import React, { Component, PropTypes } from 'react'
 import {Provider} from 'react-redux'
-import getDaysInMonth from './../utils/getDaysInMonth'
+import ScrollArea from './../components/ScrollArea'
 import Calendar from './Calendar'
 import store from './../reducers/index'
 
 export default class App extends Component{
+    componentWillMount(){
+        
+    }
     componentDidMount(){
-       let unsubscribe = store.subscribe(()=>this.forceUpdate());
-        console.log(store.getState());
-        // this.mainView.scrollTop = 400
+        
+        let unsubscribe = store.subscribe(()=>this.forceUpdate());
     }
     render(){
-        // console.log(this.state);
-        // if(!this.state){
-        //     return null
-        // }
-        // let data = {
-        //     startDay: this.state.current.startDay,
-        //     daysInPrevMonth: this.state.prev.daysInMonth,
-        //     daysInCurrentMonth: this.state.current.daysInMonth,
-        //     daysInNextMonth: this.state.next.daysInMonth
-        // };
-        //
-        // let renderedDays = mapDaysInMonth(data).map((day, i) => {
-        //     return <div key={day.date.fullDate} className={`day ${day.relation}`}><div className="inner">{day.date.plainDate}</div></div>
-        // })
        return (
            <Provider store={store}>
                <div id="root">
                    <header id="header">
-                       <div className="title">la la la</div>
+                       <div className="title">
+                           <h3>{store.getState().focusedMonth + ' ' + store.getState().focusedDate.getFullYear()}</h3>
+                       </div>
                        <div className="days">
                            <div className="day"><div className="inner">sun</div></div>
                            <div className="day"><div className="inner">mon</div></div>
@@ -46,14 +36,9 @@ export default class App extends Component{
                            <div className="day"><div className="inner">sat</div></div>
                        </div>
                    </header>
-                   <section id="main-view" ref={node => this.mainView = node}>
-                       <div className="days">
-                           <Calendar />
-                       </div>
-                   </section>
+                   <ScrollArea />
                </div>
            </Provider>
-
        )
     }
 }

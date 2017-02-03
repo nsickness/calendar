@@ -21,7 +21,7 @@ export default function mapDaysInMonth({prevMonth, currentMonth, nextMonth}) {
         }
     }
     for(let i = 0; i <= currentMonthLength; i++){
-        mappedDays = [...mappedDays, {date:currentMonth.daysInMonth[i], relation:'current'}];
+        mappedDays = [...mappedDays, {date:currentMonth.daysInMonth[i], relation:'current', firstDay: i === 0}];
     }
     for(let i = 0; i < nextMonthLength; i++){
         mappedDays = [...mappedDays, {date:nextMonth.daysInMonth[i], relation:'next'}];
