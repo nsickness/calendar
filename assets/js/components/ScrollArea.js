@@ -19,7 +19,7 @@ export default class ScrollArea extends Component {
     changeMonth(event){
         let scrollArea = event.target;
         setTimeout(()=>{
-            if(scrollArea.scrollTop === this.scrollOffset){
+            if(scrollArea.scrollTop < this.scrollOffset){
                 this.context.store.dispatch({type:'DECREMENT_MONTH'});
                 this.mainView.scrollTop = this.firstDay.offsetTop;
             } else if(scrollArea.scrollTop > this.firstDay.offsetTop + this.scrollOffset * 2) {
