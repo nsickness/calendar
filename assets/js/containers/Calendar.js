@@ -5,15 +5,13 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react'
+import CalendarDay from './../components/CalendarDay'
+
 import mapDaysInMonth from './../utils/mapDaysInMonth'
 import getDaysInMonth from './../utils/getDaysInMonth'
-
 import type from './../utils/type'
 
 export default class Calendar extends Component {
-    componentWillMount(){
-        
-    }
     generateDates(date) {
         let currentMonth = date.getMonth();
         let currentYear = date.getFullYear();
@@ -34,14 +32,16 @@ export default class Calendar extends Component {
 
         let renderedDays = mappedDays.map((day, i) => {
             if(type(day) === 'Object') {
-                let isToday = day.date.fullDate.toDateString() === store.today.toDateString() ? 'today' : null;
+                let isToday = day.date.fullDate.toDateString() === store.today.toDateString() ? ' today' : '';
+                // let isDayoff = day.date.fullDate.getDay() === 0 ||  day.date.fullDate.getDay() === 6;
                 return (
-                    <div
-                        ref={day.firstDay && this.props.firstDayRef}
+                    <CalendarDay
                         key={day.date.fullDate}
-                        className={`day ${day.relation} ${isToday}`}>
-                        <div className="inner">{day.date.plainDate}</div>
-                    </div>
+                        firstDayRef={this.props.firstDayRef}
+                        isToday={isToday}
+                        
+                        {...day}
+                    />
                 )
             }
             else {

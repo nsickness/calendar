@@ -14,10 +14,15 @@
     height:16.66%;
     padding:10px;
     align-items: flex-start;
-    border: 1px solid #80deea;
     border-top: 0;
-    border-left: 0;
-    transition: background-color .3s ease-out;
+    transition: .3s ease-out;
+    color: #bdbdbd;
+    &.current{
+      color: #000;
+    }
+    &.today{
+      background: #7986cb;
+    }
   }
 
 }
@@ -35,14 +40,13 @@
     align-content: flex-start;
     flex: 0 0 14.28%;
     padding: 0;
+    border: 1px solid #80deea;
+    border-left: 0;
     .inner{
       flex: 0 0 100%;
     }
-    &.current{
-      background: #bbdefb;
-      &.today{
-        background: #7986cb;
-      }
+    &.dayoff{
+      background: #eeeeee;
     }
 
   }
