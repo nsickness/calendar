@@ -11,22 +11,25 @@ export default class ScrollArea extends Component {
         super();
         this.changeMonth = this.changeMonth.bind(this);
 
-        this.scrollOffset = 200
+        this.scrollOffset = 0
     }
     componentDidMount(){
         this.mainView.scrollTop = this.firstDay.offsetTop
     }
     changeMonth(event){
-        let scrollArea = event.target;
+        let scrollArea = event.nativeEvent.target;
+
         setTimeout(()=>{
-            if(scrollArea.scrollTop < this.scrollOffset){
+            let shouldLoadPrev = scrollArea.scrollTop === this.scrollOffset;
+            let shouldLoadNext = scrollArea.scrollTop === scrollArea.scrollHeight - this.mainView.clientHeight - 1;
+            if(shouldLoadPrev){
                 this.context.store.dispatch({type:'DECREMENT_MONTH'});
                 this.mainView.scrollTop = this.firstDay.offsetTop;
-            } else if(scrollArea.scrollTop > this.firstDay.offsetTop + this.scrollOffset * 2) {
-                this.context.store.dispatch({type:'INCREMENT_MONTH'});
-                this.mainView.scrollTop = this.firstDay.offsetTop - this.scrollOffset * 2
+            } else if(shouldLoadNext) {
+                 this.context.store.dispatch({type:'INCREMENT_MONTH'});
+                 this.mainView.scrollTop = this.firstDay.offsetTop
             }
-        },0)
+        },200)
 
     }
     render(){

@@ -33,13 +33,13 @@ export default class Calendar extends Component {
         let renderedDays = mappedDays.map((day, i) => {
             if(type(day) === 'Object') {
                 let isToday = day.date.fullDate.toDateString() === store.today.toDateString() ? ' today' : '';
-                // let isDayoff = day.date.fullDate.getDay() === 0 ||  day.date.fullDate.getDay() === 6;
+                let isDayoff = day.date.fullDate.getDay() === 0 ||  day.date.fullDate.getDay() === 6 ? ' dayoff': '';
                 return (
                     <CalendarDay
                         key={day.date.fullDate}
                         firstDayRef={this.props.firstDayRef}
                         isToday={isToday}
-                        
+                        isDayoff={isDayoff}
                         {...day}
                     />
                 )

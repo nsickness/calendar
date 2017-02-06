@@ -9,12 +9,12 @@ import React, { Component, PropTypes } from 'react'
 export default class CalendarDay extends Component {
     render(){
         
-        let {relation, isToday, date, firstDayRef, firstDay} = this.props;
+        let {relation, isToday, date, firstDayRef, firstDay, isDayoff} = this.props;
         
         return(
             <div
                 ref={firstDay && firstDayRef}
-                className={`day ${relation}${isToday}`}>
+                className={`day ${relation}${isToday}${isDayoff}`}>
                 <div className="inner">{date.plainDate}</div>
             </div>
         )
