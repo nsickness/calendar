@@ -2,11 +2,19 @@
   flex:1;
   flex-direction: column;
   display: flex;
+  z-index:2;
+  @extend .z-depth-3;
   .title{
     flex:1;
   }
   .day{
     padding:0 10px;
-    //@extend .z-depth-1;
+    border-bottom: 0;
+  }
+  .brand-logo{
+    font-size:1.5vw;
+  }
+  .btn-flat{
+    font-size:1vw;
   }
 }

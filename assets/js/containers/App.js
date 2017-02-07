@@ -7,13 +7,11 @@
 import React, { Component, PropTypes } from 'react'
 import {Provider} from 'react-redux'
 import ScrollArea from './../components/ScrollArea'
-import Calendar from './Calendar'
+import Header from './Header'
 import store from './../reducers/index'
 
 export default class App extends Component{
-    componentWillMount(){
-        
-    }
+    
     componentDidMount(){
         
         let unsubscribe = store.subscribe(()=>this.forceUpdate());
@@ -22,20 +20,7 @@ export default class App extends Component{
        return (
            <Provider store={store}>
                <div id="root">
-                   <header id="header">
-                       <div className="title">
-                           <h3>{store.getState().focusedMonth + ' ' + store.getState().focusedDate.getFullYear()}</h3>
-                       </div>
-                       <div className="days">
-                           <div className="day dayoff"><div className="inner">sun</div></div>
-                           <div className="day"><div className="inner">mon</div></div>
-                           <div className="day"><div className="inner">tue</div></div>
-                           <div className="day"><div className="inner">wed</div></div>
-                           <div className="day"><div className="inner">thu</div></div>
-                           <div className="day"><div className="inner">fri</div></div>
-                           <div className="day dayoff"><div className="inner">sat</div></div>
-                       </div>
-                   </header>
+                   <Header />
                    <ScrollArea />
                </div>
            </Provider>

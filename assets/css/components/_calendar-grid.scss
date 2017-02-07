@@ -2,16 +2,20 @@
   display: flex;
   flex-direction: column;
   height:100vh;
+  overflow: hidden;
+  max-width: 100%;
 }
 #main-view{
   position: relative;
   flex: 8;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   .days{
     flex-wrap: wrap;
   }
   .day{
-    height:16.66%;
+    height:17.8%;
     padding:10px;
     align-items: flex-start;
     border-top: 0;
@@ -20,11 +24,26 @@
     &.current{
       color: #000;
     }
-    &.today{
-      background: #7986cb;
-    }
   }
-
+  .date{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .today .date{
+    display: inline-block;
+    background: red;
+    border-radius:50%;
+    width: 30px;
+    height: 30px;
+    padding:5px;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    @extend .z-depth-2;
+  }
+  .dummy:first-of-type{
+    background: #eeeeee;
+  }
 }
 .days{
   display: flex;
@@ -32,7 +51,6 @@
   flex-direction: row;
   align-content: center;
   align-items: stretch;
-  text-align: right;
   text-transform: capitalize;
   .day{
     align-items: center;
@@ -42,8 +60,9 @@
     padding: 0;
     border: 1px solid #80deea;
     border-left: 0;
-    .inner{
+    .badge-wrap{
       flex: 0 0 100%;
+      text-align: right;
     }
     &.dayoff{
       background: #eeeeee;

@@ -10,29 +10,45 @@ export default class ScrollArea extends Component {
     constructor(){
         super();
         this.changeMonth = this.changeMonth.bind(this);
-
-        this.scrollOffset = 0
     }
     componentDidMount(){
-        this.mainView.scrollTop = this.firstDay.offsetTop
+        
+        let defaultOffsetTop = this.firstDay.offsetTop;
+
+        this.mainView.scrollTop = defaultOffsetTop;
+
+        this.context.store.dispatch({type:'SET_DEFAULT_OFFSET_TOP',offsetTop:defaultOffsetTop})
+
+        if(window.navigator.platform !== 'MacIntel'){
+            this.mainView.style.marginRight = '-16px';
+        }
+    }
+    componentDidUpdate(){
+        this.mainView.scrollTop = this.context.store.getState().defaultOffsetTop
     }
     changeMonth(event){
-        let scrollArea = event.nativeEvent.target;
-
+        const scrollArea = event.nativeEvent.target;
+        let scrollOffset = 0;
+        let store = this.context.store;
         setTimeout(()=>{
-            let shouldLoadPrev = scrollArea.scrollTop === this.scrollOffset;
-            let shouldLoadNext = scrollArea.scrollTop === scrollArea.scrollHeight - this.mainView.clientHeight - 1;
-            if(shouldLoadPrev){
-                this.context.store.dispatch({type:'DECREMENT_MONTH'});
-                this.mainView.scrollTop = this.firstDay.offsetTop;
-            } else if(shouldLoadNext) {
-                 this.context.store.dispatch({type:'INCREMENT_MONTH'});
-                 this.mainView.scrollTop = this.firstDay.offsetTop
-            }
+            let shouldLoadPrev = scrollArea.scrollTop === scrollOffset;
+            let shouldLoadNext = scrollArea.scrollTop >= scrollArea.scrollHeight - this.mainView.clientHeight - 1;
+            new Promise((resolve,reject) =>{
+                if(shouldLoadPrev){
+                    store.dispatch({type:'DECREMENT_MONTH'});
+                    resolve()
+                } else if(shouldLoadNext) {
+                    store.dispatch({type:'INCREMENT_MONTH'});
+                    resolve()
+                }
+            }).then(()=>{
+                store.dispatch({type:'SET_DEFAULT_OFFSET_TOP',offsetTop:this.firstDay.offsetTop})
+            })
         },200)
 
     }
     render(){
+
         return(
             <section onScroll={this.changeMonth} id="main-view" ref={node => this.mainView = node}>
                 <div className="days">

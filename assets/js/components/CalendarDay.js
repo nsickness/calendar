@@ -15,7 +15,11 @@ export default class CalendarDay extends Component {
             <div
                 ref={firstDay && firstDayRef}
                 className={`day ${relation}${isToday}${isDayoff}`}>
-                <div className="inner">{date.plainDate}</div>
+                <div className="badge-wrap">
+                    <div className="date">
+                        <span>{date.plainDate}</span>
+                    </div>
+                </div>
             </div>
         )
     }

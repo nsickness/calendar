@@ -30,10 +30,7 @@ const initialState = {
 
 function dates(state = initialState, action){
     switch(action.type){
-        case 'GENERATE_DATES':
-            return Object.assign({}, state, {
-                calendarDates: visibleDates(action.date)
-            });
+        
         case 'DECREMENT_MONTH':
 
             return (()=>{
@@ -62,7 +59,12 @@ function dates(state = initialState, action){
                     focusedMonth: months[newDate.getMonth()]
                 });
             })();
-
+        case 'SET_TODAY':
+            return Object.assign({}, state, initialState);
+        case 'SET_DEFAULT_OFFSET_TOP':
+            return Object.assign({}, state, {
+                defaultOffsetTop: action.offsetTop
+            });
         default:
             return state
     }
