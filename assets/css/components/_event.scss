@@ -1,0 +1,22 @@
+.event{
+  height: 12px;
+  background: orangered;
+  margin-bottom: 10px;
+  &.start{
+    border-radius: 0 10px 10px 0;
+    margin-left: -11px;
+    padding-left: 11px;
+  }
+  &.end{
+    border-radius: 10px 0 0 10px;
+    margin-right: -11px;
+    padding-right: 11px;
+  }
+  &.mid{
+    margin-left: -11px;
+    margin-right: -11px;
+  }
+  &.single{
+    border-radius: 10px;
+  }
+}

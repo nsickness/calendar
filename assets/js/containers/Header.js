@@ -13,15 +13,18 @@ export default class Header extends Component{
     }
     render(){
         const store = this.context.store.getState();
+
+        let displayedDate = store.focusedMonth + ' ' + store.focusedDate.getFullYear();
+
         return(
             <header id="header">
                 <nav>
                     <div className="nav-wrapper light-blue lighten-3">
-                        <span className="brand-logo center"> {store.focusedMonth + ' ' + store.focusedDate.getFullYear()}</span>
+                        <span className="brand-logo center"> {displayedDate}</span>
                         <ul className="right">
-                            <li><Button className="grey lighten-0" clickHandler={()=>this.switchMonth('DECREMENT_MONTH')} >{'<'}</Button></li>
+                            <li><Button className="blue lighten-0" clickHandler={()=>this.switchMonth('DECREMENT_MONTH')} >{'<'}</Button></li>
                             <li><Button className="grey lighten-0" clickHandler={()=>this.switchMonth('SET_TODAY')} >{'today'}</Button></li>
-                            <li><Button className="grey lighten-0" clickHandler={()=>this.switchMonth('INCREMENT_MONTH')} >{'>'}</Button></li>
+                            <li><Button className="blue lighten-0" clickHandler={()=>this.switchMonth('INCREMENT_MONTH')} >{'>'}</Button></li>
                         </ul>
                     </div>
                 </nav>

@@ -21,23 +21,25 @@
     border-top: 0;
     transition: .3s ease-out;
     color: #bdbdbd;
+    display: block;
     &.current{
       color: #000;
     }
   }
   .date{
+    display: inline-block;
     font-size: 18px;
     font-weight: bold;
-  }
-  .today .date{
-    display: inline-block;
-    background: red;
-    border-radius:50%;
+    margin-bottom: 10px;
     width: 30px;
     height: 30px;
     padding:5px;
     text-align: center;
     line-height: 20px;
+  }
+  .today .date{
+    background: red;
+    border-radius:50%;
     color: white;
     @extend .z-depth-2;
   }
@@ -67,6 +69,5 @@
     &.dayoff{
       background: #eeeeee;
     }
-
   }
 }
