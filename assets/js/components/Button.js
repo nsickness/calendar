@@ -7,10 +7,9 @@ import React from 'react'
 
 
 export default function Button(props) {
-    let {clickHandler, children, className} = props;
     return(
-        <button onClick={clickHandler} className={`waves-effect waves-light btn-flat ${className}`}>
-            {children}
+        <button onClick={props.clickHandler} className={`waves-effect waves-light btn-flat ${props.className}`}>
+            {props.children}
         </button>
     )
 }

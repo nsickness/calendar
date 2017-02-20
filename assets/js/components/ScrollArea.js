@@ -17,7 +17,7 @@ export default class ScrollArea extends Component {
 
         this.mainView.scrollTop = defaultOffsetTop;
 
-        this.context.store.dispatch({type:'SET_DEFAULT_OFFSET_TOP',offsetTop:defaultOffsetTop})
+        this.context.store.dispatch({type:'SET_DEFAULT_OFFSET_TOP',offsetTop:defaultOffsetTop});
 
         if(window.navigator.platform !== 'MacIntel'){
             this.mainView.style.marginRight = '-16px';
