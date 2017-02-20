@@ -8,23 +8,16 @@ import React, { Component, PropTypes } from 'react'
 import Button from './../components/Button'
 
 export default class Header extends Component{
-    switchMonth(actionType){
-        this.context.store.dispatch({type:actionType})
-    }
     render(){
-        const store = this.context.store.getState();
-
-        let displayedDate = store.focusedMonth + ' ' + store.focusedDate.getFullYear();
-
         return(
             <header id="header">
                 <nav>
                     <div className="nav-wrapper light-blue lighten-3">
-                        <span className="brand-logo center"> {displayedDate}</span>
+                        <span className="brand-logo center"> {this.props.displayedDate}</span>
                         <ul className="right">
-                            <li><Button className="blue lighten-0" clickHandler={()=>this.switchMonth('DECREMENT_MONTH')} >{'<'}</Button></li>
-                            <li><Button className="grey lighten-0" clickHandler={()=>this.switchMonth('SET_TODAY')} >{'today'}</Button></li>
-                            <li><Button className="blue lighten-0" clickHandler={()=>this.switchMonth('INCREMENT_MONTH')} >{'>'}</Button></li>
+                            <li><Button className="blue lighten-0" clickHandler={this.props.decrementMonth} >{'<'}</Button></li>
+                            <li><Button className="grey lighten-0" clickHandler={this.props.setToday} >{'today'}</Button></li>
+                            <li><Button className="blue lighten-0" clickHandler={this.props.incrementMonth} >{'>'}</Button></li>
                         </ul>
                     </div>
                 </nav>
